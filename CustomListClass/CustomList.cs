@@ -1,35 +1,59 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 namespace CustomListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         //Member Variables
-        int? listCount;
-        int listIndex;
-        Type type;
-        string name;
+        private int listCount = 0;
+        public int index;
+        public string name;
+        private T[] inputs;
 
-        //MEMBER METHODS
-        public void Add(ref T input)
+        public CustomList()
         {
-            //Add element to List
+            inputs = new T[0];
         }
 
-        public void Remove(ref T input)
+
+        //MEMBER METHODS
+        public void Add(T input)
+        {
+            //inputs[] = input;
+            //count++;                      //--> listCount = 1
+            //input.index = count - 1;   //--> listIndex = 0 (1-1);
+        }
+
+        public void RemoveAt(int index)
         {
             //Remove element from array
         }
 
-        public void ElliesToString()
+        public void ListToString()
         {
             //Print List as string
         }
 
-        public void ElliesCount()
+        public void ListCount()
         {
-            //count number of elements in list
+            //get { return listCount; }
         }
 
+        public T this[int index]
+        {
+            get { return inputs[index]; }
+        }
+
+        //IEnumerator<T> GetEnumerator()
+        //{
+        //    return (IEnumerator<T>)GetEnumerator();
+        //}
+
+        //public int CustomListEnum GetEnumerator()
+        //{
+        //    return new CustomListEnum();
+        //}
     //NEED
     //Add
     //Remove
@@ -48,7 +72,6 @@ namespace CustomListClass
     //Insert
     //RemoveAt
     //ToArray
-    //ToString
     }
 }
 
