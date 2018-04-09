@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 namespace CustomListClass
 {
-    public class CustomList<T> : IEnumerable
+    public class CustomList<T> : IEnumerable<T>
     {
         //Member Variables
         private int listCount = 0;
@@ -13,19 +13,27 @@ namespace CustomListClass
 
         public CustomList()
         {
-            inputs = new T[0];
+            inputs = new T[5];
+
         }
 
+        //counting
 
         //MEMBER METHODS
         public void Add(T input)
         {
             //inputs[] = input;
-            //count++;                      //--> listCount = 1
+            //listCount++;                      //--> listCount = 1
             //input.index = count - 1;   //--> listIndex = 0 (1-1);
+
+            //if index is less than /equal to capacity, add
+            //else resize array & add
+            //ArrayB capacity = array A capacity*2.
+            //Send arrayA items to array B
+            //ArrayB = ArrayA
         }
 
-        public void RemoveAt(int index)
+        public void Remove(T input)
         {
             //Remove element from array
         }
@@ -43,6 +51,7 @@ namespace CustomListClass
         public T this[int index]
         {
             get { return inputs[index]; }
+            set { inputs[index] = value; }
         }
 
         //IEnumerator<T> GetEnumerator()

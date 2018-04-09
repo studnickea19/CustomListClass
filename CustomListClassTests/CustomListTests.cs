@@ -75,10 +75,10 @@ namespace CustomListClassTests
             listName.Add(5);
 
             //Act
-            listName.RemoveAt(0);
+            listName.Remove(1);
 
             //Assert
-            Assert.IsFalse(listName[0] = 1);
+            Assert.IsFalse(listName[0] == 1);
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace CustomListClassTests
             int actual;
 
             //Act
-            listName.RemoveAt(0);
+            listName.Remove(5);
             actual = listName.ListCount;
 
             //Assert  
@@ -109,10 +109,10 @@ namespace CustomListClassTests
             listName.Add(5);
 
             //Act
-            listName.RemoveAt(1);
+            listName.Remove(3);
 
             //Assert
-            Assert.IsTrue(listName[1] = 5);
+            Assert.IsTrue(listName[1] == 5);
         }
 
         [TestMethod]
