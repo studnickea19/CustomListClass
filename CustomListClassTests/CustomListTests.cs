@@ -18,10 +18,16 @@ namespace CustomListClassTests
         public void CustomListAdd_Element_WasAddedToList()
         {
             //Arrange
+            CustomList<int> listName = new CustomList<int>();
+            int expected = 32;
+            int actual;
 
             //Act
-
+            listName.Add(expected);
+            actual = listName[0];
+                
             //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -29,10 +35,17 @@ namespace CustomListClassTests
         public void CustomListAdd_ListCount_IncreasedByOne()
         {
             //Arrange
+            CustomList<int> listName = new CustomList<int>();
+            int firstInt = 32;
+            int expected = 1;
+            int actual;
 
             //Act
+            listName.Add(firstInt);
+            actual = listName.ElliesCount;
 
             //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -40,10 +53,16 @@ namespace CustomListClassTests
         public void CustomListAdd_ListIndex_EqualsNumberOfElementsMinusOne()
         {
             //Arrange
+            CustomList<int> listName = new CustomList<int>();
+            int expected = 32;
+            int actual;
 
             //Act
+            listName.Add(expected);
+            actual = listName[0];
 
             //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
