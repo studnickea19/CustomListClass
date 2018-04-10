@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 namespace CustomListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> 
     {
         //Member Variables
         private int listCount = 0;
@@ -31,15 +31,29 @@ namespace CustomListClass
             }
             else
             {
-                //Resize(ref inputs);
+                Resize(ref inputs);
                 Add(input);
 
             }
+            Console.WriteLine(inputs);
         }
 
         public void Remove(T input)
         {
-            //Remove element from array
+            for (int i = 0; i <= listCount; i++)
+            {
+                T checkInput = inputs[i];
+                if(checkInput.Equals(input) == true)
+                {
+                    inputs[i] = inputs[i+1];
+                    listCount--;
+                }
+                else
+                {
+                    inputs[i] = inputs[i];
+                }
+            }
+
         }
 
         public void ListToString()
@@ -54,6 +68,19 @@ namespace CustomListClass
         { 
             return listCount;
         }
+
+        public CustomList<T> ZipNewArray(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> newInputs = new CustomList<T>();
+            int newListCount = listOne.ListCount() + listTwo.ListCount();
+                
+            for (int x = 0; x <= newListCount; x++)
+            {
+                newInputs.Add(listOne[x]);
+                newInputs.Add(listTwo[x]);
+            }
+            return newInputs;
+        }
             
         public T this[int index]
         {
@@ -61,31 +88,32 @@ namespace CustomListClass
             set { inputs[index] = value; }
         }
 
-        //public void Resize(ref T[] inputs)
-        //{
-        //    T[] temp;
-        //    T[] inputs2 = new T[capacity * 2];
-        //    temp = inputs[];
-        //    inputs[] = inputs2[];
-        //    inputs2 = temp;
-        //}
 
-    //DONE
-    //Add
-    //Iterable
-    //ToString
-    //Count
+        public void Resize(ref T[] inputs)
+        {
+            T[] temp;
+            T[] inputs2 = new T[capacity * 2];
+            temp = inputs;
+            inputs = inputs2;
+            inputs2 = temp;
+        }
 
-    //NEED
-    //Remove
-    //+ operator
-    //- operator
-    //Zip
+        //DONE
+        //Add
+        //Iterable
+        //ToString
+        //Count
+
+        //NEED
+        //Remove
+        //+ operator
+        //- operator
+        //Zip
 
 
-    //BONUS
-    //Sort
-    //Easter Egg user story
+        //BONUS
+        //Sort
+        //Easter Egg user story
     }
 }
 

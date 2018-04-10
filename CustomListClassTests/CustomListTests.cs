@@ -86,8 +86,8 @@ namespace CustomListClassTests
         {
             //Arrange
             CustomList<int> listName = new CustomList<int>();
-            listName.Add(5);
-            int? expected = null;
+            //listName.Add(5);
+            int? expected = 0;
             int actual;
 
             //Act
@@ -95,7 +95,7 @@ namespace CustomListClassTests
             actual = listName.ListCount();
 
             //Assert  
-            Assert.AreSame(expected, actual);
+            Assert.AreEqual(expected, actual);
 
         }
 
@@ -145,6 +145,34 @@ namespace CustomListClassTests
 
             //Act
             actual = listName.ListCount();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ZipNewArray_ReturnedArray_ZippedNewItems()
+        {
+            //Arrange
+            CustomList<int> listOne = new CustomList<int>();
+            listOne.Add(64);
+            listOne.Add(32);
+            listOne.Add(16);
+            CustomList<int> listTwo = new CustomList<int>();
+            listTwo.Add(46);
+            listTwo.Add(23);
+            listTwo.Add(61);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(64);
+            expected.Add(32);
+            expected.Add(16);
+            expected.Add(46);
+            expected.Add(23);
+            expected.Add(61);
+            CustomList<int> actual = new CustomList<int>();
+
+            //Act
+            actual = listOne.ZipNewArray(listOne, listTwo);
 
             //Assert
             Assert.AreEqual(expected, actual);
