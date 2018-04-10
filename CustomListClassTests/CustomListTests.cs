@@ -41,7 +41,7 @@ namespace CustomListClassTests
 
             //Act
             listName.Add(firstInt);
-            actual = listName.ListCount;
+            actual = listName.ListCount();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -92,7 +92,7 @@ namespace CustomListClassTests
 
             //Act
             listName.Remove(5);
-            actual = listName.ListCount;
+            actual = listName.ListCount();
 
             //Assert  
             Assert.AreSame(expected, actual);
@@ -125,7 +125,7 @@ namespace CustomListClassTests
             int actual;
 
             //Act
-            actual = listName.ListCount;
+            actual = listName.ListCount();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -144,7 +144,7 @@ namespace CustomListClassTests
             int actual;
 
             //Act
-            actual = listName.ListCount;
+            actual = listName.ListCount();
 
             //Assert
             Assert.AreEqual(expected, actual);

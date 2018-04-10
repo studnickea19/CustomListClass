@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 namespace CustomListClass
 {
-    public class CustomList<T> : IEnumerable<T>
+    public class CustomList<T>
     {
         //Member Variables
         private int listCount = 0;
-        public int index;
+        public int index = -1;
         public string name;
         private T[] inputs;
+        int capacity = 5;
 
         public CustomList()
         {
@@ -22,15 +23,18 @@ namespace CustomListClass
         //MEMBER METHODS
         public void Add(T input)
         {
-            //inputs[] = input;
-            //listCount++;                      //--> listCount = 1
-            //input.index = count - 1;   //--> listIndex = 0 (1-1);
+            if (capacity <=5)
+            {
+                listCount++;
+                index++;
+                inputs[index] = input;  
+            }
+            else
+            {
+                //Resize(ref inputs);
+                Add(input);
 
-            //if index is less than /equal to capacity, add
-            //else resize array & add
-            //ArrayB capacity = array A capacity*2.
-            //Send arrayA items to array B
-            //ArrayB = ArrayA
+            }
         }
 
         public void Remove(T input)
@@ -40,35 +44,40 @@ namespace CustomListClass
 
         public void ListToString()
         {
-            //Print List as string
+            for (int i = 0; i <= listCount; i++)
+            {
+                Console.WriteLine(inputs[i]);
+            }
         }
 
-        public void ListCount()
-        {
-            //get { return listCount; }
+        public int ListCount()
+        { 
+            return listCount;
         }
-
+            
         public T this[int index]
         {
             get { return inputs[index]; }
             set { inputs[index] = value; }
         }
 
-        //IEnumerator<T> GetEnumerator()
+        //public void Resize(ref T[] inputs)
         //{
-        //    return (IEnumerator<T>)GetEnumerator();
+        //    T[] temp;
+        //    T[] inputs2 = new T[capacity * 2];
+        //    temp = inputs[];
+        //    inputs[] = inputs2[];
+        //    inputs2 = temp;
         //}
 
-        //public int CustomListEnum GetEnumerator()
-        //{
-        //    return new CustomListEnum();
-        //}
-    //NEED
+    //DONE
     //Add
-    //Remove
     //Iterable
     //ToString
     //Count
+
+    //NEED
+    //Remove
     //+ operator
     //- operator
     //Zip
@@ -77,10 +86,6 @@ namespace CustomListClass
     //BONUS
     //Sort
     //Easter Egg user story
-
-    //Insert
-    //RemoveAt
-    //ToArray
     }
 }
 
