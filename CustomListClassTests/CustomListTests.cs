@@ -86,7 +86,7 @@ namespace CustomListClassTests
         {
             //Arrange
             CustomList<int> listName = new CustomList<int>();
-            //listName.Add(5);
+            listName.Add(5);
             int? expected = 0;
             int actual;
 

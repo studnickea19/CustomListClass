@@ -6,16 +6,21 @@ namespace CustomListClass
     public class CustomList<T> 
     {
         //Member Variables
-        private int listCount = 0;
-        public int index = -1;
-        public string name;
+        private int listCount;
         private T[] inputs;
-        int capacity = 5;
+        int capacity;
+        public T this[int index]
+
+        {
+            get { return inputs[index]; }
+            set { inputs[index] = value; }
+        }
 
         public CustomList()
         {
-            inputs = new T[5];
-
+            listCount = 0;
+            capacity = 5;
+            inputs = new T[capacity];
         }
 
         //counting
@@ -23,19 +28,17 @@ namespace CustomListClass
         //MEMBER METHODS
         public void Add(T input)
         {
-            if (capacity <=5)
+            if (listCount < capacity)
             {
+                inputs[listCount] = input;  
                 listCount++;
-                index++;
-                inputs[index] = input;  
             }
             else
             {
-                Resize(ref inputs);
+                Resize(inputs);
                 Add(input);
 
             }
-            Console.WriteLine(inputs);
         }
 
         public void Remove(T input)
@@ -56,12 +59,15 @@ namespace CustomListClass
 
         }
 
-        public void ListToString()
+        public string ListToString()
         {
+            string listString = "";
             for (int i = 0; i <= listCount; i++)
             {
-                Console.WriteLine(inputs[i]);
+                T value = inputs[i];
+                listString += value + " ";
             }
+            return listString;
         }
 
         public int ListCount()
@@ -81,21 +87,13 @@ namespace CustomListClass
             }
             return newInputs;
         }
-            
-        public T this[int index]
-        {
-            get { return inputs[index]; }
-            set { inputs[index] = value; }
-        }
 
-
-        public void Resize(ref T[] inputs)
+        public void Resize(T[] inputs)
         {
-            T[] temp;
-            T[] inputs2 = new T[capacity * 2];
-            temp = inputs;
+            capacity *= 2;
+            T[] inputs2 = new T[capacity];
+            //not transferring data
             inputs = inputs2;
-            inputs2 = temp;
         }
 
         //DONE
@@ -103,9 +101,10 @@ namespace CustomListClass
         //Iterable
         //ToString
         //Count
+        //Remove
 
         //NEED
-        //Remove
+
         //+ operator
         //- operator
         //Zip
