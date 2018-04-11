@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomListClass;
 
@@ -167,9 +169,8 @@ namespace CustomListClassTests
             int actual = listName.capacity;
 
             //Assert
-            Assert.AreNotEqual(expected, actual);
+            Assert.AreEqual(expected, actual/2);
         }
-
 
         [TestMethod]
         public void ZipNewArray_ReturnedArray_ZippedNewItems()

@@ -41,18 +41,21 @@ namespace CustomListClass
 
         public void Remove(T input)
         {
-            for (int i = 0; i <= listCount; i++)
+            for (int i = 0; i < listCount; i++)
             {
                 T checkInput = inputs[i];
                 if(checkInput.Equals(input) == true)
                 {
-                    inputs[i] = inputs[i+1];
+                    for(int x = i; x < listCount; x++)
+                    {
+                        inputs[x] = inputs[x + 1];  
+                    }
                     listCount--;
                 }
-                else
-                {
-                    inputs[i] = inputs[i];
-                }
+                //else
+                //{
+                //    inputs[i] = inputs[i];
+                //}
             }
         }
 

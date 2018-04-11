@@ -7,17 +7,16 @@ namespace CustomListClass
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            CustomList<int> listOne = new CustomList<int>();
-            listOne.Add(64);
-            listOne.Add(32);
-            listOne.Add(16);
-            CustomList<int> listTwo = new CustomList<int>();
-            listTwo.Add(46);
-            listTwo.Add(23);
-            listTwo.Add(61);
-            CustomList<int> actual = new CustomList<int>();
-            actual = listOne.ZipNewArray(listOne, listTwo);
-            string newString = actual.ToString();
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(64);
+            expected.Add(46);
+            expected.Add(32);
+            expected.Add(23);
+            expected.Add(16);
+            expected.Add(61);
+            expected.Remove(32);
+            //expected.Remove(61);
+            string newString = expected.ToString();
             Console.WriteLine(newString);
             Console.ReadLine();
 
