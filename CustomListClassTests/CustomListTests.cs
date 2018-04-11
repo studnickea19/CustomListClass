@@ -183,20 +183,21 @@ namespace CustomListClassTests
             listTwo.Add(46);
             listTwo.Add(23);
             listTwo.Add(61);
-            CustomList<int> expected = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>{};
             expected.Add(64);
-            expected.Add(32);
-            expected.Add(16);
             expected.Add(46);
+            expected.Add(32);
             expected.Add(23);
+            expected.Add(16);
             expected.Add(61);
             CustomList<int> actual = new CustomList<int>();
+            int x = 3;
 
             //Act
             actual = listOne.ZipNewArray(listOne, listTwo);
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected[x], actual[x]);
         }
     }
 }

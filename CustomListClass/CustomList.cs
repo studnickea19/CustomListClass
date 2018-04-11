@@ -61,15 +61,15 @@ namespace CustomListClass
             string listString = "";
             for (int i = 0; i < listCount; i++)
             {
-                if(i < listCount)
+                if(i == listCount-1)
                 {
                     T value = inputs[i];
-                    listString += value + ", ";  
+                    listString += value + " ";  
                 }
                 else
                 {
                     T value = inputs[i];
-                    listString += value + " ";  
+                    listString += value + ", ";  
                 }
             }
             return listString;
@@ -83,12 +83,35 @@ namespace CustomListClass
         public CustomList<T> ZipNewArray(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> newInputs = new CustomList<T>();
-            int newListCount = listOne.ListCount() + listTwo.ListCount();
+            int newListCount1 = listOne.ListCount(); 
+            int newListCount2 = listTwo.ListCount();
+            int newListCount = newListCount1 + newListCount2;
+                                      
 
-            for (int x = 0; x <= newListCount; x++)
+            for (int x = 0; x < newListCount; x++)
             {
-                newInputs.Add(listOne[x]);
-                newInputs.Add(listTwo[x]);
+                if(newListCount1 > 0 && newListCount2 > 0)
+                {
+                    newInputs.Add(listOne[x]);
+                    newListCount1--;
+                    newInputs.Add(listTwo[x]);
+                    newListCount2--; 
+                }
+                else if (newListCount1 > 0 && newListCount2 <= 0)
+                {
+                    newInputs.Add(listOne[x]);
+                    newListCount1--;
+                }
+                else if (newListCount2 > 0 && newListCount1 <= 0)
+                {
+                    newInputs.Add(listTwo[x]);
+                    newListCount2--;
+                }
+                else
+                {
+                    return newInputs;
+                }
+               
             }
             return newInputs;
         }
