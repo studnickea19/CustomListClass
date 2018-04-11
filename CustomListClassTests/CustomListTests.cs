@@ -151,6 +151,27 @@ namespace CustomListClassTests
         }
 
         [TestMethod]
+        public void Resize_NewArraySize_IsGreaterByFiftyPercent()
+        {
+            //Arrange
+            CustomList<int> listName = new CustomList<int>();
+            int expected = listName.capacity;
+
+            //Act
+            listName.Add(64);
+            listName.Add(32);
+            listName.Add(16);
+            listName.Add(46);
+            listName.Add(23);
+            listName.Add(61);
+            int actual = listName.capacity;
+
+            //Assert
+            Assert.AreNotEqual(expected, actual);
+        }
+
+
+        [TestMethod]
         public void ZipNewArray_ReturnedArray_ZippedNewItems()
         {
             //Arrange

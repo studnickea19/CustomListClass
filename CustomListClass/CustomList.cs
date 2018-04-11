@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 namespace CustomListClass
 {
-    public class CustomList<T> 
+    public class CustomList<T> : IEnumerable<T>
     {
         //Member Variables
         private int listCount;
         private T[] inputs;
-        int capacity;
+        public int capacity;
         public T this[int index]
-
         {
             get { return inputs[index]; }
             set { inputs[index] = value; }
@@ -23,21 +23,19 @@ namespace CustomListClass
             inputs = new T[capacity];
         }
 
-        //counting
 
         //MEMBER METHODS
         public void Add(T input)
         {
-            if (listCount < capacity)
+            if (listCount < capacity/2)
             {
                 inputs[listCount] = input;  
                 listCount++;
             }
             else
             {
-                Resize(inputs);
+                Resize();
                 Add(input);
-
             }
         }
 
@@ -56,16 +54,23 @@ namespace CustomListClass
                     inputs[i] = inputs[i];
                 }
             }
-
         }
 
-        public string ListToString()
+        public override string ToString()
         {
             string listString = "";
-            for (int i = 0; i <= listCount; i++)
+            for (int i = 0; i < listCount; i++)
             {
-                T value = inputs[i];
-                listString += value + " ";
+                if(i < listCount)
+                {
+                    T value = inputs[i];
+                    listString += value + ", ";  
+                }
+                else
+                {
+                    T value = inputs[i];
+                    listString += value + " ";  
+                }
             }
             return listString;
         }
@@ -79,7 +84,7 @@ namespace CustomListClass
         {
             CustomList<T> newInputs = new CustomList<T>();
             int newListCount = listOne.ListCount() + listTwo.ListCount();
-                
+
             for (int x = 0; x <= newListCount; x++)
             {
                 newInputs.Add(listOne[x]);
@@ -88,12 +93,29 @@ namespace CustomListClass
             return newInputs;
         }
 
-        public void Resize(T[] inputs)
+        public T[] Resize()
         {
             capacity *= 2;
             T[] inputs2 = new T[capacity];
-            //not transferring data
+            for (int x = 0; x < inputs.Length; x++)
+            {
+                inputs2[x] = inputs[x];
+            }
             inputs = inputs2;
+            return inputs;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int x = 0; x <= inputs.Length; x++)
+            {
+                yield return inputs[x];
+            } 
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         //DONE
@@ -102,12 +124,12 @@ namespace CustomListClass
         //ToString
         //Count
         //Remove
+        //Zip
 
         //NEED
-
         //+ operator
         //- operator
-        //Zip
+
 
 
         //BONUS
