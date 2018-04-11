@@ -52,10 +52,6 @@ namespace CustomListClass
                     }
                     listCount--;
                 }
-                //else
-                //{
-                //    inputs[i] = inputs[i];
-                //}
             }
         }
 
@@ -86,8 +82,8 @@ namespace CustomListClass
         public CustomList<T> ZipNewArray(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> newInputs = new CustomList<T>();
-            int newListCount1 = listOne.ListCount(); 
-            int newListCount2 = listTwo.ListCount();
+            int newListCount1 = listOne.listCount; 
+            int newListCount2 = listTwo.listCount;
             int newListCount = newListCount1 + newListCount2;
                                       
 
@@ -118,6 +114,57 @@ namespace CustomListClass
             }
             return newInputs;
         }
+
+        public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> newInputs = new CustomList<T>();
+            int newListCount1 = listOne.ListCount()+2; 
+            int newListCount2 = listTwo.ListCount()+2;
+
+            for (int x = 0; x < newListCount1; x++)
+            {
+                newInputs.Add(listOne[x]);
+                newListCount1--;
+            }
+            for (int x = 0; x < newListCount2; x++)
+            {
+                newInputs.Add(listTwo[x]);
+                newListCount2--;
+            }
+            return newInputs;
+        }
+
+        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> listThree = new CustomList<T>();
+            listThree= listThree.TransferListContents(listOne);
+
+            for (int x = 0; x < listTwo.listCount; x++)                 //for each item in list2 (list2Item)
+            {
+                T listTwoItem = listTwo[x];                         
+                for (int i = 0; i < listThree.listCount; i++)             //loop through list1     (list1Item)
+                {
+                    T listThreeItem = listThree[i];
+                    if (listThreeItem.Equals(listTwoItem) == true)    //If they are equal
+                    {
+                        listThree.Remove(listTwoItem);                //remove from list1                            
+                    }
+                }
+            }
+            return listThree;
+        }
+
+        public CustomList<T> TransferListContents(CustomList<T> listOne)
+        {
+            CustomList<T> listTwo = new CustomList<T>();
+            for (int x = 0; x < listOne.listCount; x++)
+            {
+                listTwo.Add(listOne[x]);
+            }
+            return listTwo;
+        }
+
+
 
         public T[] Resize()
         {
@@ -151,9 +198,10 @@ namespace CustomListClass
         //Count
         //Remove
         //Zip
+        //+ operator
 
         //NEED
-        //+ operator
+
         //- operator
 
 
