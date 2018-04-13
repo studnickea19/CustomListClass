@@ -23,7 +23,6 @@ namespace CustomListClass
             inputs = new T[capacity];
         }
 
-
         //MEMBER METHODS
         public void Add(T input)
         {
@@ -190,22 +189,6 @@ namespace CustomListClass
         {
             return GetEnumerator();
         }
-
-        //DONE
-        //Add
-        //Iterable
-        //ToString
-        //Count
-        //Remove
-        //Zip
-        //+ operator
-
-        //NEED
-
-        //- operator
-
-
-
         //BONUS
         //Sort
         //Easter Egg user story
